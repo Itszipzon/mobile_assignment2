@@ -1,0 +1,195 @@
+@startuml meals_diagram
+set namespaceSeparator ::
+
+class "meals::main.dart::App" {
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::main.dart::App"
+
+class "meals::models::category.dart::Category" {
+  +String id
+  +String title
+  +Color color
+}
+
+"meals::models::category.dart::Category" o-- "dart::ui::Color"
+
+class "meals::models::meal.dart::Meal" {
+  +String id
+  +List<String> categories
+  +String title
+  +String imageUrl
+  +List<String> ingredients
+  +List<String> steps
+  +int duration
+  +Complexity complexity
+  +Affordability affordability
+  +bool isGlutenFree
+  +bool isLactoseFree
+  +bool isVegan
+  +bool isVegetarian
+}
+
+"meals::models::meal.dart::Meal" o-- "meals::models::meal.dart::Complexity"
+"meals::models::meal.dart::Meal" o-- "meals::models::meal.dart::Affordability"
+
+class "meals::models::meal.dart::Complexity" {
+  +int index
+  {static} +List<Complexity> values
+  {static} +Complexity simple
+  {static} +Complexity challenging
+  {static} +Complexity hard
+}
+
+"meals::models::meal.dart::Complexity" o-- "meals::models::meal.dart::Complexity"
+"dart::core::Enum" <|-- "meals::models::meal.dart::Complexity"
+
+class "meals::models::meal.dart::Affordability" {
+  +int index
+  {static} +List<Affordability> values
+  {static} +Affordability affordable
+  {static} +Affordability pricey
+  {static} +Affordability luxurious
+}
+
+"meals::models::meal.dart::Affordability" o-- "meals::models::meal.dart::Affordability"
+"dart::core::Enum" <|-- "meals::models::meal.dart::Affordability"
+
+class "meals::screens::categories.dart::CategoriesScreen" {
+  +void Function(Meal) onToggleFavorite
+  +List<Meal> availableMeals
+  -void _selectCategory()
+  +Widget build()
+}
+
+"meals::screens::categories.dart::CategoriesScreen" o-- "null::void Function(Meal)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::screens::categories.dart::CategoriesScreen"
+
+class "meals::screens::filters.dart::FiltersScreen" {
+  +Map<Filter, bool> currentFilters
+  +State<FiltersScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "meals::screens::filters.dart::FiltersScreen"
+
+class "meals::screens::filters.dart::_FiltersScreenState" {
+  -bool _glutenFreeFilterSet
+  -bool _lactoseFreeFilterSet
+  -bool _vegetarianFilterSet
+  -bool _veganFilterSet
+  +void initState()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "meals::screens::filters.dart::_FiltersScreenState"
+
+class "meals::screens::filters.dart::Filter" {
+  +int index
+  {static} +List<Filter> values
+  {static} +Filter glutenFree
+  {static} +Filter lactoseFree
+  {static} +Filter vegetarian
+  {static} +Filter vegan
+}
+
+"meals::screens::filters.dart::Filter" o-- "meals::screens::filters.dart::Filter"
+"dart::core::Enum" <|-- "meals::screens::filters.dart::Filter"
+
+class "meals::screens::meals.dart::MealsScreen" {
+  +String? title
+  +List<Meal> meals
+  +void Function(Meal) onToggleFavorite
+  +void selectMeal()
+  +Widget build()
+}
+
+"meals::screens::meals.dart::MealsScreen" o-- "null::void Function(Meal)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::screens::meals.dart::MealsScreen"
+
+class "meals::screens::meal_details.dart::MealDetailsScreen" {
+  +Meal meal
+  +void Function(Meal) onToggleFavorite
+  +Widget build()
+}
+
+"meals::screens::meal_details.dart::MealDetailsScreen" o-- "meals::models::meal.dart::Meal"
+"meals::screens::meal_details.dart::MealDetailsScreen" o-- "null::void Function(Meal)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::screens::meal_details.dart::MealDetailsScreen"
+
+class "meals::screens::shopping_list.dart::ShoppingList" {
+  +List<String> items
+  +State<ShoppingList> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "meals::screens::shopping_list.dart::ShoppingList"
+
+class "meals::screens::shopping_list.dart::_ShoppingListState" {
+  -void _addItem()
+  -void _removeItem()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "meals::screens::shopping_list.dart::_ShoppingListState"
+
+class "meals::screens::tabs.dart::TabsScreen" {
+  +State<TabsScreen> createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "meals::screens::tabs.dart::TabsScreen"
+
+class "meals::screens::tabs.dart::_TabsScreenState" {
+  -int _selectedPageIndex
+  -List<Meal> _favoriteMeals
+  -List<String> _shoppingList
+  -Map<Filter, bool> _selectedFilters
+  -void _showInfoMessage()
+  -void _toggleMealFavoriteStatus()
+  -void _selectPage()
+  -void _setScreen()
+  +Widget build()
+}
+
+"flutter::src::widgets::framework.dart::State" <|-- "meals::screens::tabs.dart::_TabsScreenState"
+
+class "meals::widgets::category_grid_item.dart::CategoryGridItem" {
+  +Category category
+  +void Function() onSelectCategory
+  +Widget build()
+}
+
+"meals::widgets::category_grid_item.dart::CategoryGridItem" o-- "meals::models::category.dart::Category"
+"meals::widgets::category_grid_item.dart::CategoryGridItem" o-- "null::void Function()"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::widgets::category_grid_item.dart::CategoryGridItem"
+
+class "meals::widgets::main_drawer.dart::MainDrawer" {
+  +void Function(String) onSelectScreen
+  +Widget build()
+}
+
+"meals::widgets::main_drawer.dart::MainDrawer" o-- "null::void Function(String)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::widgets::main_drawer.dart::MainDrawer"
+
+class "meals::widgets::meal_item.dart::MealItem" {
+  +Meal meal
+  +void Function(Meal) onSelectMeal
+  +String complexityText
+  +String affordabilityText
+  +Widget build()
+}
+
+"meals::widgets::meal_item.dart::MealItem" o-- "meals::models::meal.dart::Meal"
+"meals::widgets::meal_item.dart::MealItem" o-- "null::void Function(Meal)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::widgets::meal_item.dart::MealItem"
+
+class "meals::widgets::meal_item_trait.dart::MealItemTrait" {
+  +IconData icon
+  +String label
+  +Widget build()
+}
+
+"meals::widgets::meal_item_trait.dart::MealItemTrait" o-- "flutter::src::widgets::icon_data.dart::IconData"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "meals::widgets::meal_item_trait.dart::MealItemTrait"
+
+
+@enduml

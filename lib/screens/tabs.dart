@@ -5,6 +5,7 @@ import 'package:meals/models/meal.dart';
 import 'package:meals/screens/categories.dart';
 import 'package:meals/screens/filters.dart';
 import 'package:meals/screens/meals.dart';
+import 'package:meals/screens/shopping_list.dart';
 import 'package:meals/widgets/main_drawer.dart';
 
 const kInitialFilters = {
@@ -26,6 +27,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
+  final List<String> _shoppingList = [];
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   void _showInfoMessage(String message) {
@@ -106,6 +108,9 @@ class _TabsScreenState extends State<TabsScreen> {
         onToggleFavorite: _toggleMealFavoriteStatus,
       );
       activePageTitle = 'Your Favorites';
+    } else if (_selectedPageIndex == 2) {
+      activePage = ShoppingList(items: _shoppingList,);
+      activePageTitle = 'Shopping List';
     }
 
     return Scaffold(
@@ -127,6 +132,10 @@ class _TabsScreenState extends State<TabsScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
             label: 'Favorites',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
+            label: 'Shopping List',
           ),
         ],
       ),

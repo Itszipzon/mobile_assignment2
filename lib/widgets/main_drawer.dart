@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
-/// The main drawer.
+/// The main drawer. Contains the navigation items.
 class MainDrawer extends StatelessWidget {
   const MainDrawer({super.key, required this.onSelectScreen});
 
+  /// Callback to select a screen.
   final void Function(String identifier) onSelectScreen;
 
   @override

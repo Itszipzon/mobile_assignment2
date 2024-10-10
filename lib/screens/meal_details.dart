@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:meals/models/meal.dart';
 
+/// Screen to display details about the meal.
 class MealDetailsScreen extends StatelessWidget {
   const MealDetailsScreen({
     super.key,

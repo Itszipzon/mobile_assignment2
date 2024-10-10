@@ -4,6 +4,7 @@ import 'package:meals/models/category.dart';
 import 'package:meals/models/meal.dart';
 
 // Constants in Dart should be written in lowerCamelcase.
+/// Dummy data about all the categories.
 const availableCategories = [
   Category(
     id: 'c1',
@@ -57,6 +58,7 @@ const availableCategories = [
   ),
 ];
 
+/// Dummy data about all the meals.
 const dummyMeals = [
   Meal(
     id: 'm1',

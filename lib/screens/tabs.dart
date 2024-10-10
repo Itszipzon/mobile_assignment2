@@ -8,6 +8,7 @@ import 'package:meals/screens/meals.dart';
 import 'package:meals/screens/shopping_list.dart';
 import 'package:meals/widgets/main_drawer.dart';
 
+/// Initializes the filters.
 const kInitialFilters = {
   Filter.glutenFree: false,
   Filter.lactoseFree: false,
@@ -15,6 +16,7 @@ const kInitialFilters = {
   Filter.vegan: false
 };
 
+/// Main page of the entire application.
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
 
@@ -24,6 +26,7 @@ class TabsScreen extends StatefulWidget {
   }
 }
 
+/// State of the tabs screen
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];

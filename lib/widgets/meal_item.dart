@@ -4,6 +4,7 @@ import 'package:transparent_image/transparent_image.dart';
 import 'package:meals/widgets/meal_item_trait.dart';
 import 'package:meals/models/meal.dart';
 
+/// Widget for an entire meal.
 class MealItem extends StatelessWidget {
   const MealItem({
     super.key,
@@ -14,11 +15,13 @@ class MealItem extends StatelessWidget {
   final Meal meal;
   final void Function(Meal meal) onSelectMeal;
 
+  /// Makes sure the first letter in the complexity name is upper case.
   String get complexityText {
     return meal.complexity.name[0].toUpperCase() +
         meal.complexity.name.substring(1);
   }
 
+  /// Makes sure the first letter in the affordability name is uppser case.
   String get affordabilityText {
     return meal.affordability.name[0].toUpperCase() +
         meal.affordability.name.substring(1);

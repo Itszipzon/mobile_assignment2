@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// A single trait for a meal.
 class MealItemTrait extends StatelessWidget {
   const MealItemTrait({
     super.key,

@@ -6,6 +6,7 @@ import 'package:meals/widgets/category_grid_item.dart';
 import 'package:meals/screens/meals.dart';
 import 'package:meals/models/category.dart';
 
+/// All the categories.
 class CategoriesScreen extends StatelessWidget {
   const CategoriesScreen({
     super.key,

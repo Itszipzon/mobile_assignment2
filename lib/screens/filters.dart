@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // import 'package:meals/screens/tabs.dart';
 // import 'package:meals/widgets/main_drawer.dart';
 
+/// Available filter enum.
 enum Filter {
   glutenFree,
   lactoseFree,
@@ -10,6 +11,7 @@ enum Filter {
   vegan,
 }
 
+/// Screen to display all the filters
 class FiltersScreen extends StatefulWidget {
   const FiltersScreen({super.key, required this.currentFilters});
 

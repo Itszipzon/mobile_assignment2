@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// Screen to create a shopping list. (Created by us.)
 class ShoppingList extends StatefulWidget {
   const ShoppingList({Key? key, required this.items}) : super(key: key);
 
@@ -11,6 +12,7 @@ class ShoppingList extends StatefulWidget {
   }
 }
 
+/// State of the shopping list.
 class _ShoppingListState extends State<ShoppingList> {
 
   void _addItem(String item) {

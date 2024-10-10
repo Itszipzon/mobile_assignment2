@@ -17,6 +17,12 @@ Flutter-based mobile application that allows users to manage a shopping list. Th
 - Dart
 - Flutter
 
+## **Prerequisites**
+To run this project, you need to have the following installed on your system:
+- **Flutter SDK**: [Install Flutter](https://flutter.dev/docs/get-started/install)
+- **Dart SDK** (comes with Flutter)
+- **Visual Studio Code** for development
+- **Android/iOS Emulator** or physical devices to run the app
 ## Installation & Setup
 To run the app locally, follow these steps:
 

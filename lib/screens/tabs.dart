@@ -30,7 +30,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
-  final List<String> _shoppingList = [];
+  final List<String> _shoppingList = []; // Added this list to store the shopping list items
   Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   void _showInfoMessage(String message) {
@@ -111,8 +111,8 @@ class _TabsScreenState extends State<TabsScreen> {
         onToggleFavorite: _toggleMealFavoriteStatus,
       );
       activePageTitle = 'Your Favorites';
-    } else if (_selectedPageIndex == 2) {
-      activePage = ShoppingList(items: _shoppingList,);
+    } else if (_selectedPageIndex == 2) { // Added this condition to display the shopping list
+      activePage = ShoppingList(items: _shoppingList,); // Added this widget to display the shopping list, and pass the list of items
       activePageTitle = 'Shopping List';
     }
 
